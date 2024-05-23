@@ -23,9 +23,11 @@ jobs:
 
     - name: Upload Artifacts (Windows)
       uses: actions/upload-artifact@v3
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         name: electron-app-windows
-        path: dist/**/*  # Modify according to your output directory and structure
+        path: "dist\Flott Setup 1.0.0.exe"  # Modify according to your output directory and structure
 
   build-macos:
     name: Build on macOS
@@ -47,6 +49,8 @@ jobs:
 
     - name: Upload Artifacts (MacOS)
       uses: actions/upload-artifact@v3
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         name: electron-app-macos
-        path: dist/**/*  # Modify according to your output directory and structure
+        path: dist/Flott-1.0.0-arm64.dmg  # Modify according to your output directory and structure
