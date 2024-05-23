@@ -7,54 +7,50 @@ jobs:
     name: Build on Windows
     runs-on: windows-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
 
-    - name: Install Dependencies
-      run: npm install
+      - name: Install Dependencies
+        run: npm install
 
-    - name: Build Electron app for Windows
-      env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      run: npm run dist -- -w
+      - name: Build Electron app for Windows
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: npm run dist -- -w
 
-    - name: Upload Artifacts (Windows)
-      uses: actions/upload-artifact@v3
-      env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      with:
-        name: electron-app-windows
-        path: "dist\Flott Setup 1.0.0.exe"  # Modify according to your output directory and structure
+      - name: Upload Artifacts (Windows)
+        uses: actions/upload-artifact@v3
+        with:
+          name: electron-app-windows
+          path: "dist/Flott Setup 1.0.0.exe"  # Ensure this path matches the output file location exactly
 
   build-macos:
     name: Build on macOS
     runs-on: macos-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
 
-    - name: Install Dependencies
-      run: npm install
+      - name: Install Dependencies
+        run: npm install
 
-    - name: Build Electron app for macOS
-      env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      run: npm run dist -- -m
+      - name: Build Electron app for macOS
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: npm run dist -- -m
 
-    - name: Upload Artifacts (MacOS)
-      uses: actions/upload-artifact@v3
-      env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
-      with:
-        name: electron-app-macos
-        path: dist/Flott-1.0.0-arm64.dmg  # Modify according to your output directory and structure
+      - name: Upload Artifacts (MacOS)
+        uses: actions/upload-artifact@v3
+        with:
+          name: electron-app-macos
+          path: "dist/Flott-1.0.0-arm64.dmg"  # Ensure this path matches the output file location exactly
