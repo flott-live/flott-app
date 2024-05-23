@@ -1,0 +1,52 @@
+name: Build Electron App
+
+on: [push, pull_request]
+
+jobs:
+  build-windows:
+    name: Build on Windows
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Build Electron app for Windows
+      run: npm run dist -- -w
+
+    - name: Upload Artifacts (Windows)
+      uses: actions/upload-artifact@v3
+      with:
+        name: electron-app-windows
+        path: dist/**/*  # Modify according to your output directory and structure
+
+  build-macos:
+    name: Build on macOS
+    runs-on: macos-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Build Electron app for macOS
+      run: npm run dist -- -m
+
+    - name: Upload Artifacts (MacOS)
+      uses: actions/upload-artifact@v3
+      with:
+        name: electron-app-macos
+        path: dist/**/*  # Modify according to your output directory and structure
