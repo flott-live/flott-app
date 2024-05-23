@@ -19,6 +19,8 @@ jobs:
       run: npm install
 
     - name: Build Electron app for Windows
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: npm run dist -- -w
 
     - name: Upload Artifacts (Windows)
@@ -45,6 +47,8 @@ jobs:
       run: npm install
 
     - name: Build Electron app for macOS
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: npm run dist -- -m
 
     - name: Upload Artifacts (MacOS)
