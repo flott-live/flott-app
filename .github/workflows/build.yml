@@ -41,8 +41,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref_name }}
-          release_name: Release ${{ github.ref_name }}
+          tag_name: release-windows-${{ github.run_number }}-${{ github.sha }}
+          release_name: Release w${{ github.ref_name }}
           body: 'Automated release of Windows Application'
           draft: false
           prerelease: false
@@ -89,8 +89,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref_name }}
-          release_name: Release ${{ github.ref_name }}
+          tag_name: release-mac-${{ github.run_number }}-${{ github.sha }}
+          release_name: Release m${{ github.ref_name }}
           body: 'Automated release of macOS Application'
           draft: false
           prerelease: false
